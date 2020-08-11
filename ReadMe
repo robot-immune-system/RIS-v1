@@ -1,0 +1,73 @@
+Project Title
+
+The implementation of the Robot Immune System (RIS) is done using Robot Operating System (ROS) platform and simulations are done on Virtual Roobot Experimentation Platform (V-REP). We have created a package named ris_v1. You can find multiple ROS nodes in src folder, pulishing and subscribing messages on different topics. The package ris_v1 has all the necessary files arranged in corresponding folders required to execute simulations. 
+
+Getting Started
+
+These instructions will help you to run the ROS package on your laptop for evaluating purpose.
+
+Prerequisites
+
+You need to install 
+
+Ubuntu 14.04
+ROS indigo
+Linux release V3.3.2 64bit (Ubuntu 14.04.1) of V-REP
+
+Installing
+
+Downloading links are given below.
+https://www.ubuntu.com/download/alternative-downloads
+http://wiki.ros.org/indigo/Installation/Ubuntu
+http://www.coppeliarobotics.com/downloads.html
+
+Running the simulations
+
+Once the system is ready do the following steps in sequence
+
+1.	write roscore in terminal to start ROS master node 
+2.	Create a catkin workspace by entering the following instructions one by one in the terminal window:
+
+	source /opt/ros/indigo/setup.bash
+	mkdir -p ~/catkin_ws/src
+	cd ~/catkin_ws
+	catkin_make
+
+3.	Copy the folder ris_v1 and paste it in the catkin_ws/src folder created in the previous step.
+4.	Open another terminal window and type and enter the below mentioned instructions one by one to install some existing packages which will assist 		ris_v1:
+
+	sudo apt-get install ros-indigo-diagnostic-common-diagnostics
+	sudo apt-get install ros-indigo-gmapping
+	sudo apt-get install ros-indigo-move-base
+	sudo apt-get install ros-indigo-rqt-multiplot
+
+5.	After the installation of these packages type and enter the following instructions one by one in the terminal windows. 
+	To open the V-REP, type:
+
+	cd 
+	cd vrep
+	./vrep.sh
+	In V-REP window open the V-REP scene located in /ris_v1/vrep/my_octabot.ttt
+	
+	Open another terminal window and type:
+
+	cd
+	source catkin_ws/devel/setup.bash
+	cd ~/catkin_ws
+	catkin_make
+	roslaunch ris_v1 robot_immune_system.launch	
+	
+6.	For graphical visualization of how the various immune functions help to maintain robot health open rqt_multiplot by typing the 		following instruction in another terminal window:
+	
+	rosrun rqt_multiplot rqt_multiplot
+	
+	This will open up a new window. In this window click "Open configuration" tab on the top-right corner and choose the file 		located ris_v1/plot/rqt_multiplot.xml and then click "Run all plots". 
+
+7.	Navigate the robot using keys mentioned in teleop_twist_keyboard window
+
+Try to intentionally hit the robot with some obstacle and observe how this behaviour is considered as an unhealthy state due to the high energy consumption rate and increased temperature of motors. The RIS will then try to bring back the homeostatic balance which can also be observed  in rqt_multiplot window.
+
+Authors
+
+ 
+# robot-immune-system-v1
